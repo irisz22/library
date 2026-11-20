@@ -55,7 +55,6 @@ function displayLibrary() {
         card.classList.add("book");
         
         removeButton.textContent = "Remove Book";
-        removeButton.id = "remove";
 
         const readBool = book.isRead();
         if(readBool) card.style.backgroundColor = 'lightgreen';
