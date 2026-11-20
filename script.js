@@ -1,4 +1,13 @@
 const myLibrary = [];
+const displayed = [];
+
+
+const dialog = document.querySelector("dialog");
+const showButton = document.getElementById("addbook");
+const closeButton = document.getElementById("close");
+const form = document.querySelector("form");
+
+const container = document.getElementById("main");
 
 function Book(title, author, pages, read) {
     this.title = title;
@@ -19,17 +28,48 @@ function addBookToLibrary(title, author, pages, read) {
 }
 
 function displayLibrary() {
-    const container = document.getElementById("main");
-
     for (let book of myLibrary) {
+        if (displayed.includes(book.id)) {
+            console.log(book.id);
+            continue;
+        }
         const display = document.createElement("div");
         display.textContent = `${book.title} by ${book.author}, ${book.pages} pages, ${book.read}`;
         display.classList.add("book");
         container.append(display);
+        displayed.push(book.id);
     }
 }
 
-addBookToLibrary("Great Gatsby", "Scott Fitzgerald", "many", "read");
-addBookToLibrary("Hunger Games", "Scott Fitzgerald", "many", "read");
 
+addBookToLibrary("Great Gatsby", "F. Scott Fitzgerald", "180", "read");
+addBookToLibrary("The Hunger Games", "Suzanne Collins", "374", "read");
 displayLibrary()
+
+
+showButton.addEventListener("click", () => {
+    console.log('show modal');
+    dialog.showModal();
+})
+
+closeButton.addEventListener("click", () => {
+    console.log('close modal');
+    dialog.close();
+})
+
+form.addEventListener("submit", (event) => {
+    console.log('submit');
+    const formData = new FormData(form);
+
+    const title = formData.get('title');
+    const author = formData.get('author');
+    const pages = formData.get('pages');
+    const read = formData.get('read');
+    addBookToLibrary(title, author, pages, read);
+
+    displayLibrary();
+
+    event.preventDefault();
+    form.reset()
+    dialog.close();
+})

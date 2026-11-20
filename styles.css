@@ -2,11 +2,49 @@
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
+button {
+    font-size: 20px;
+    margin-bottom: 8px;
+    border-radius: 8px;
+    background-color: lightblue;
+}
+
+dialog > button {
+    width: 100%;
+}
+
+#main {
+    display: flex;
+    gap: 12px;
+}
+
 .book {
     background-color: pink;
     height: 250px;
     width: 200px;
-    
+    padding: 12px;
+
+    border: 2px solid gray;
+
     font-size: 20px;
     text-align: center;
+}
+
+form {
+    display: grid;
+    grid-auto-flow: row;
+}
+
+form > label, form > input, select {
+     font-size: 20px;
+
+}
+
+form > input {
+    margin-bottom: 8px;
+}
+
+form > button {
+    background-color: pink;
+    margin-top: 12px;
 }
